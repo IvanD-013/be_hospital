@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,18 @@ INSTALLED_APPS = [
     'hospitalBackend'
 ]
 
+SIMPLE_JWT = { 
+      'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+      'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+      'ROTATE_REFRESH_TOKENS': False,
+      'BLACKLIST_AFTER_ROTATION': True,
+      'UPDATE_LAST_LOGIN': False,
+
+      'ALGORITHM': 'HS256',
+      'USER_ID_FIELD': 'id',
+      'USER_ID_CLAIM': 'user_id', 
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,6 +64,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+REST_FRAMEWORK = { 
+      'DEFAULT_PERMISSION_CLASSES': (
+          'rest_framework.permissions.AllowAny',
+      ),
+      'DEFAULT_AUTHENTICATION_CLASSES': (
+          'rest_framework_simplejwt.authentication.JWTAuthentication',
+      ) 
+}
+AUTH_USER_MODEL='hospitalBackend.Usuario'
 
 ROOT_URLCONF = 'proyecto_hospital.urls'
 
@@ -78,10 +100,15 @@ WSGI_APPLICATION = 'proyecto_hospital.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+          'NAME': 'db2afvkbquvo61',
+          'USER': 'qomumbbzxlrywg',
+          'PASSWORD': '18f11aa29ee8e9bcaa531a6b1cce6f0213f220492e316741c4d9a5a932dbfdad',
+          'HOST': 'ec2-35-170-146-54.compute-1.amazonaws.com',
+          'PORT': '5432',
+      } 
 }
+
 
 
 # Password validation
