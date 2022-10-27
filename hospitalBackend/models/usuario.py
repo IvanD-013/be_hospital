@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     id = models.BigAutoField(primary_key=True)
-    Rol= models.CharField('Rol', max_length = 50)
+    rol= models.CharField('Rol', max_length = 50)
     nombre = models.CharField('Nombre', max_length = 50)
     apellido=models.CharField('Apellido', max_length = 50)
     celular=models.CharField('Celular', max_length = 50)

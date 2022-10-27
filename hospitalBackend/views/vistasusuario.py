@@ -9,11 +9,11 @@ from hospitalBackend.models.usuario import Usuario
 
 
 
-class UsuarioListAPIView(generics.ListAPIview):
+class UsuarioListAPIView(generics.ListAPIView):
 
     #Concrete view for listing a queryset or creating a model instance.
     
-    queryset=Usuario.objetos.all()
+    queryset=Usuario.objects.all()
     serializer_class=UsuarioSerializer
     "permissions_classes=(IsAuthenticated)"
 
@@ -28,7 +28,7 @@ class UsuarioRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
     
     #Concrete view for retrieving, updating or deleting a model instance.
     
-    queryset=Usuario.objetos.all()
+    queryset=Usuario.objects.all()
     serializer_class=UsuarioSerializer
     lookup_field="id" #Campo con el que se realiza la busqueda los objetos
     lookup_url_kwarg="pk" #Nombre dado en la URL al argumento

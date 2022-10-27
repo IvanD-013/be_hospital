@@ -11,11 +11,11 @@ from hospitalBackend.models.medico import Medico
 
 
 
-class MedicoListCreateAPIView(generics.ListCreateAPIview):
+class MedicoListCreateAPIView(generics.ListCreateAPIView):
    
     #Concrete view for listing a queryset or creating a model instance.
     
-    queryset=Medico.objetos.all()
+    queryset=Medico.objects.all()
     serializer_class=MedicoSerializer
     "permissions_classes=(IsAuthenticated)"
 
@@ -48,7 +48,7 @@ class MedicoRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     """
     Concrete view for retrieving, updating or deleting a model instance.
     """
-    queryset=Medico.objetos.all()
+    queryset=Medico.objects.all()
     serializer_class=MedicoSerializer
     lookup_field="id" #Campo con el que se realiza la busqueda los objetos
     lookup_url_kwarg="pk" #Nombre dado en la URL al argumento
